@@ -23,6 +23,14 @@ app.post("/professors", db.createProfessor);
 app.put("/professors/:id", db.updateProfessor);
 app.delete("/professors/:id", db.deleteProfessor);
 
+// Reviews Routes
+
+app.get("/reviews", db.getReviews);
+app.get("/reviews/:id", db.getReviewById);
+app.post("/reviews", db.creatReview);
+app.put("/reviews/:id", db.updatReview);
+app.delete("/reviews/:id", db.deletReview);
+
 app.listen(port, () => {
   console.log(`App running on port ${port}.`);
 });
