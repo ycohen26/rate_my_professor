@@ -82,16 +82,6 @@ const deleteProfessor = (request, response) => {
   });
 };
 
-// Professor Module Exports
-
-module.exports = {
-  getProfessors,
-  getProfessorById,
-  createProfessor,
-  updateProfessor,
-  deleteProfessor,
-};
-
 // GET all reviews
 
 const getReviews = (request, response) => {
@@ -108,26 +98,22 @@ const getReviews = (request, response) => {
 const getReviewById = (request, response) => {
   const id = parseInt(request.params.id);
 
-  pool.query(
-    "SELECT * FROM reviews WHERE id = $1",
-    [id],
-    (error, results) => {
-      if (error) {
-        throw error;
-      }
-      response.status(200).json(results.rows);
+  pool.query("SELECT * FROM reviews WHERE id = $1", [id], (error, results) => {
+    if (error) {
+      throw error;
     }
-  );
+    response.status(200).json(results.rows);
+  });
 };
 
 // POST new review
 
 const createReview = (request, response) => {
-  const { professor_id, rating, text } = request.body; //for professor_id fix to get current professor's ID //does professor_id need to be camel case in this instance?
+  const { professorId, rating, text } = request.body; //for professor_id fix to get current professor's ID //does professor_id need to be camel case in this instance?
 
   pool.query(
-    "INSERT INTO professors (professor_id, rating, text) VALUES ($1, $2, $3)",
-    [professor_id, rating, text],
+    "INSERT INTO reviews (professorId, rating, text) VALUES ($1, $2, $3)",
+    [professorId, rating, text],
     (error, results) => {
       if (error) {
         throw error;
@@ -140,11 +126,11 @@ const createReview = (request, response) => {
 // PUT update review
 const updateReview = (request, response) => {
   const id = parseInt(request.params.id);
-  const { professor_id, rating, text } = request.body;
+  const { professorId, rating, text } = request.body;
 
   pool.query(
-    "UPDATE reviews SET professor_id = $1, rating = $2, text = $3, WHERE id = $4",
-    [professor_id, rating, text, id],
+    "UPDATE reviews SET professorId = $1, rating = $2, text = $3, WHERE id = $4",
+    [professorId, rating, text, id],
     (error, results) => {
       if (error) {
         throw error;
@@ -167,7 +153,7 @@ const deleteReview = (request, response) => {
   });
 };
 
-// Reviews Module Exports
+//Module Exports
 
 module.exports = {
   getReviews,
@@ -175,4 +161,9 @@ module.exports = {
   createReview,
   updateReview,
   deleteReview,
+  getProfessors,
+  getProfessorById,
+  createProfessor,
+  updateProfessor,
+  deleteProfessor,
 };
