@@ -112,7 +112,7 @@ const createReview = (request, response) => {
   const { professorId, rating, text } = request.body; //for professor_id fix to get current professor's ID //does professor_id need to be camel case in this instance?
 
   pool.query(
-    "INSERT INTO professors (professor_id, rating, text) VALUES ($1, $2, $3)",
+    "INSERT INTO reviews (professorId, rating, text) VALUES ($1, $2, $3)",
     [professorId, rating, text],
     (error, results) => {
       if (error) {
@@ -129,7 +129,7 @@ const updateReview = (request, response) => {
   const { professorId, rating, text } = request.body;
 
   pool.query(
-    "UPDATE reviews SET professor_id = $1, rating = $2, text = $3, WHERE id = $4",
+    "UPDATE reviews SET professorId = $1, rating = $2, text = $3, WHERE id = $4",
     [professorId, rating, text, id],
     (error, results) => {
       if (error) {
