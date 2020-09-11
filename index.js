@@ -27,9 +27,9 @@ app.delete("/professors/:id", db.deleteProfessor);
 
 app.get("/reviews", db.getReviews);
 app.get("/reviews/:id", db.getReviewById);
-app.post("/reviews", db.creatReview);
-app.put("/reviews/:id", db.updatReview);
-app.delete("/reviews/:id", db.deletReview);
+app.post("/reviews", db.createReview);
+app.put("/reviews/:id", db.updateReview);
+app.delete("/reviews/:id", db.deleteReview);
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`);
