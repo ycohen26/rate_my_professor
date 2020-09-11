@@ -40,17 +40,17 @@ const getProfessorById = (request, response) => {
 const createProfessor = (request, response) => {
   const { name, title, school, department } = request.body;
 
-  // pool.query(
-  //   "INSERT INTO professors (name, title, school, department) VALUES ($1, $2, $3, $4)",
-  //   [name, title, school, department],
-  //   (error, results) => {
-  //     if (error) {
-  //       throw error;
-  //     }
-  //     response.status(201).send(`Professor added with ID: ${results.insertId}`);
-  //   }
-  // );
-  response.json('hello world')
+  pool.query(
+    "INSERT INTO professors (name, title, school, department) VALUES ($1, $2, $3, $4)",
+    [name, title, school, department],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(201).send(`Professor added with ID: ${results.insertId}`);
+    }
+  );
+  response.json("hello world");
 };
 
 // PUT update professor
@@ -110,7 +110,7 @@ const getReviewById = (request, response) => {
 // POST new review
 
 const createReview = (request, response) => {
-  const { professorId, rating, text } = request.body; 
+  const { professorId, rating, text } = request.body;
 
   pool.query(
     "INSERT INTO reviews (professorId, rating, text) VALUES ($1, $2, $3)",
