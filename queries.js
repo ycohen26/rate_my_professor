@@ -52,7 +52,6 @@ const createProfessor = (request, response) => {
   );
   response.json("hello world");
 };
-
 // PUT update professor
 const updateProfessor = (request, response) => {
   const id = parseInt(request.params.id);
