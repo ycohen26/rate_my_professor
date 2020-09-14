@@ -50,8 +50,8 @@ const createProfessor = (request, response) => {
       response.status(201).send(`Professor added with ID: ${results.insertId}`);
     }
   );
-  response.json("hello world");
 };
+
 // PUT update professor
 const updateProfessor = (request, response) => {
   const id = parseInt(request.params.id);
